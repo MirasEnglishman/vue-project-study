@@ -10,7 +10,7 @@
     </div>
 
     <nav class="main-nav">
-      <router-link to="/products">Продукты</router-link>
+      <router-link to="/products">Товары</router-link>
       <router-link to="/categories">Категории</router-link>
 
       <!-- Ссылка на корзину с выводом количества товаров -->

@@ -34,8 +34,8 @@
         @click="showProductDetails(product)"
       >
         <img
-          v-if="product.images && product.images.length"
-          :src="product.images[0]"
+          v-if="product.image"
+          :src="product.image"
           alt="Фото товара"
         />
         <h3>{{ product.name }}</h3>
