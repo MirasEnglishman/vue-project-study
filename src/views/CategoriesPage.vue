@@ -58,65 +58,107 @@ export default {
 };
 </script>
 
+
 <style scoped>
+/* Базовые стили для всей страницы */
 .categories-page {
-  text-align: center;
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
-  background-color: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  background-color: #f5f6fa; /* Светло-серый фон */
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #2f3640; /* Тёмный цвет для текста */
 }
 
 .categories-page h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #343a40;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: #2f3640;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
 }
 
+/* Состояние загрузки */
+.categories-page div[ v-if="loading" ] {
+  font-size: 1.5rem;
+  color: #718093;
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* Сетка категорий */
 .categories-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 25px;
-  justify-items: center;
-  padding: 20px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Карточки категорий */
 .category-card {
-  width: 250px;
-  border: 1px solid #e9ecef;
-  border-radius: 10px;
+  background-color: #fff; /* Белая подложка */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Лёгкий тень */
   text-align: center;
-  padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  padding: 20px;
 }
 
 .category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
+/* Изображение категории */
 .category-image {
   width: 100%;
-  height: 180px;
+  height: 160px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
   margin-bottom: 15px;
+  transition: transform 0.3s;
 }
 
+.category-card:hover .category-image {
+  transform: scale(1.05);
+}
+
+/* Название категории */
 .category-card h3 {
-  margin-top: 10px;
-  font-size: 1.5em;
-  color: #495057;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2f3640;
   text-transform: capitalize;
+  margin: 0;
 }
 
-.category-card h3:hover {
-  color: #007bff;
+/* Дополнительные эффекты (можно отключить, если не нужен оверлей) */
+.category-card::before {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(52, 152, 219, 0.1) 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
+.category-card:hover::before {
+  opacity: 1;
+}
 </style>

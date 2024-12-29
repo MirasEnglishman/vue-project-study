@@ -242,121 +242,213 @@ export default {
 };
 </script>
 
-
 <style scoped>
+/* Контейнер админ-панели */
 .admin-page {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;            /* Заполняем всю высоту экрана */
+  padding: 20px 40px;
+  background-color: #f9f9f9;    /* Светлый фон вместо градиентов */
+  font-family: "Open Sans", sans-serif;
+  color: #333;                  /* Тёмно-серый цвет текста */
+  box-sizing: border-box;       /* Гарантия корректных отступов */
 }
 
+/* Заголовки */
 h1,
 h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  text-align: left;            /* Выравниваем по левому краю */
+  font-weight: 700;
+  text-transform: none;        /* Убираем uppercase */
+  letter-spacing: normal;      /* Сбрасываем растяжение букв */
+  color: #444;                 /* Смягчённый тёмно-серый */
+  text-shadow: none;           /* Убираем тени */
 }
 
+/* Состояние загрузки */
+div[v-if="loading"] {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 20px 0;
+}
+
+/* Таблица (продукты, заказы) */
 .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: #fff;
+  border: 1px solid #ddd;      /* Тонкая рамка вокруг */
+  border-radius: 6px;
+  overflow: hidden;            /* Скругляет углы */
 }
 
 .data-table th,
 .data-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+  padding: 12px 10px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
 }
 
 .data-table th {
-    background-color: #007bff;
-    color: #fff;
+  background-color: #fafafa;
+  font-weight: 600;
 }
 
+.data-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Изображения товаров */
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Кнопки (добавить, редактировать, удалить, сохранить) */
 .add-button,
 .edit-button,
 .delete-button,
 .save-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  color: #fff;
+  margin: 5px 0;
+}
+
+.add-button,
+.edit-button {
+  background-color: #5bc0de; /* Голубой */
 }
 
 .add-button:hover,
-.edit-button:hover,
-.delete-button:hover,
-.save-button:hover {
-    background-color: #0056b3;
+.edit-button:hover {
+  background-color: #31b0d5; /* Темнее при ховере */
+  transform: translateY(-2px);
 }
 
 .delete-button {
-    background-color: #dc3545;
+  background-color: #d9534f; /* Красный */
 }
 
 .delete-button:hover {
-    background-color: #a71d2a;
+  background-color: #c9302c;
+  transform: translateY(-2px);
 }
 
+.save-button {
+  background-color: #5cb85c; /* Зелёный */
+  border: none;
+}
+
+.save-button:hover {
+  background-color: #4cae4c;
+  transform: translateY(-2px);
+}
+
+/* Список категорий */
 .category-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
 }
 
 .category-list li {
-    padding: 10px;
-    background-color: #fff;
-    margin-bottom: 5px;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #333;
 }
 
-.product-image {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
+/* Модальное окно */
 .modal {
-    display: flex;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Тёмная подложка */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.4rem;
+  color: #333;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.close:hover {
+  transform: scale(1.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+/* Поля формы внутри модального окна */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+  border-color: #5bc0de; /* Голубой при фокусе */
 }
 </style>

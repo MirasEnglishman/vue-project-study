@@ -65,109 +65,120 @@ export default {
 };
 </script>
 
-
 <style scoped>
+
+
+/* Общие стили для всего заголовка */
 header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  margin: 20px;
+  width: 100%;
+  background-color: #2c2c54; /* Тёмно-фиолетовый фон */
+  color: #f1f1f1;           /* Светлый текст */
+  font-family: "Roboto", Arial, sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
+/* Верхняя полоса (контактная информация, адрес и т.д.) */
 .header-top {
-  width: 90%;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Выровнять элементы по центру по вертикали */
-  padding: 10px 0px;
-  background-color: #fff;
-  font-size: 14px;
-  color: #666;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1e1e3f; /* Ещё более тёмный оттенок для верхней полосы */
+  font-size: 0.9rem;
+  color: #dcdde1;
 }
 
+/* Мелкие элементы внутри верхней полосы */
 .contact-info,
 .address {
   display: flex;
-  flex-direction: column;
-  white-space: nowrap; /* Запрещает перенос текста */
+  gap: 10px;
+  align-items: center;
 }
-
-.request-link,
+.contact-info a,
 .address a {
-  color: blue;
+  color: #a29bfe;
   text-decoration: none;
+  transition: color 0.3s;
 }
-.request-link:hover,
+.contact-info a:hover,
 .address a:hover {
-  color: blue;
-  text-decoration: underline;
+  color: #f5f6fa;
 }
 
-.logo-wrapper {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.logo img {
-  max-height: 100px;
-  width: auto;
-}
-
+/* Основная навигация */
 .main-nav {
   display: flex;
   justify-content: center;
-  gap: 5px;
-  margin-top: 15px;
-  width: 80vw; /* Ширина 80% от ширины экрана */
+  align-items: center;
+  gap: 30px;
+  padding: 15px 0;
+  background-color: #2c2c54;
 }
 
+/* Ссылки в основном меню */
 .main-nav a {
-  width: 100%;
+  color: #f1f1f1;
   text-decoration: none;
-  color: #333;
   font-weight: 500;
-  padding: 20px 0;
-  background-color: #eaeaea;
-  transition: background-color 0.3s;
-  text-align: center;
-  display: flex;
-  align-items: center; 
-  justify-content: center;
+  padding: 10px 0;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.main-nav a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #a29bfe; /* Светлый акцентный цвет */
+  transition: width 0.3s, left 0.3s;
 }
 
 .main-nav a:hover {
-  background-color: blue;
-  color: #fff;
+  color: #a29bfe;
+}
+.main-nav a:hover::before {
+  width: 100%;
+  left: 0;
 }
 
-/* Контейнер для кнопок авторизации */
+/* Блоки, зависящие от авторизации */
 .auth-buttons {
   display: flex;
-  gap: 5px;
-  width: 100%;
+  gap: 10px;
+  align-items: center;
 }
 
+/* Кнопки авторизации */
 .login-button,
 .register-button {
-  flex: 1; /* чтобы они занимали равное пространство */
+  /* background-color: #3c3c8a; */
+  color: #f1f1f1;
   text-decoration: none;
-  color: #333;
   font-weight: 500;
-  padding: 20px 0;
-  background-color: #eaeaea;
-  transition: background-color 0.3s;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 8px 40px;
+  border-radius: 20px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .login-button:hover,
 .register-button:hover {
-  background-color: blue;
-  color: #fff;
+  /* background-color: #504f9d; */
+  transform: translateY(-2px);
+}
+
+/* Адаптивность: уменьшаем отступы на маленьких экранах */
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .main-nav {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
 }
 </style>

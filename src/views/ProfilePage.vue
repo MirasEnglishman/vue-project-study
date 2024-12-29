@@ -79,110 +79,89 @@ export default {
   },
 };
 </script>
+<style scoped>
+/* Общий контейнер страницы */
+.profile-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #f5f5f5; /* Светлый нейтральный фон */
+  font-family: "Poppins", sans-serif;
+  color: #333; /* Темный цвет для текста */
+}
 
-  
-  <style scoped>
-  /* Общий контейнер страницы */
-  .profile-page {
-    min-height: 80vh;
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 600px;
-  
-    /* Градиентный фон */
-    background: linear-gradient(135deg, #eef2f3, #8e9eab);
-    border-radius: 12px;
-  
-    /* Выравнивание содержимого по центру */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+/* Заголовок */
+.profile-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-transform: uppercase;
+  text-align: left; /* Выравниваем заголовок по левому краю */
+}
+
+/* Контейнер загрузки */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.loading-container p {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: #555;
+}
+
+/* Спиннер */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #666;
+  border-radius: 50%;
+  animation: rotate 1s infinite linear;
+  margin: 0 auto;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
   }
-  
-  /* Заголовок */
-  .profile-page h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 2em;
-    margin-bottom: 30px;
-    color: #333;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-  }
-  
-  /* Карточка с профилем */
-  .profile-card {
-    width: 100%;
-    max-width: 400px;
-    background-color: #ffffffcc; /* белый с небольшой прозрачностью */
-    backdrop-filter: blur(5px);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    text-align: center;
-    animation: fadeIn 0.4s ease;
-  }
-  
-  .profile-card p {
-    margin: 10px 0;
-    font-size: 1.1em;
-    color: #444;
-  }
-  
-  /* Кнопка «Выйти» */
-  .logout-button {
-    background-color: #f44336;
-    color: #fff;
-    padding: 10px 20px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .logout-button:hover {
-    background-color: #c5382f;
-  }
-  
-  /* Контейнер для спиннера и текста «Загрузка...» */
-  .loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  /* Спиннер */
-  .spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #ccc; /* серые грани */
-    border-top: 4px solid #777; /* более тёмная грань сверху */
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  
-  /* Анимация вращения спиннера */
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  /* Плавное появление содержимого */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  </style>
-  
+}
+
+/* Карточка профиля */
+.profile-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.profile-card p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Кнопка выхода */
+.logout-button {
+  margin-top: 20px;
+  background-color: #e74c3c; /* Красный цвет */
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+</style>
